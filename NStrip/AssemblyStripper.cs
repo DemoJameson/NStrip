@@ -168,6 +168,15 @@ namespace NStrip
 					if (removeReadOnly)
 						field.IsInitOnly = false;
 				}
+
+				foreach (var property in type.Properties)
+				{
+					if (property.GetMethod is { } getMethod)
+						getMethod.IsPublic = true;
+
+					if (property.SetMethod is { } setMethod)
+						setMethod.IsPublic = true;
+				}
 			}
 		}
 	}
